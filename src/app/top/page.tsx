@@ -237,7 +237,7 @@ const AnimeViewerApp: React.FC = () => {
             <CardContent>
               <div className="mb-4 overflow-auto max-h-96">
                 <Table>
-                  <TableHeader className="bg-white sticky top-0 h-10 z-10 shadow-md">
+                  <TableHeader className="bg-white sticky top-0 h-10 shadow-md">
                     <TableRow className="bg-primary-50">
                       <TableHead className="w-[50px]">
                         <Checkbox

@@ -1,0 +1,126 @@
+[
+  {
+    "website_id": 1,
+    "website_name": "9anime",
+    "icon_url": "http://localhost:3000/mock/img/9anime.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      },
+      {
+        "attribute_id": 3,
+        "attribute_name": "nya-n"
+      }
+    ]
+  },
+  {
+    "website_id": 6,
+    "website_name": "danime",
+    "icon_url": "http://localhost:3000/mock/img/danime.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 3,
+    "website_name": "AmazonPrimeVideoJPTV",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 10,
+    "website_name": "dummy",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 11,
+    "website_name": "dummy",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 12,
+    "website_name": "dummy",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 13,
+    "website_name": "dummy",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  },
+  {
+    "website_id": 14,
+    "website_name": "dummy",
+    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "attributes": [
+      {
+        "attribute_id": 1,
+        "attribute_name": "favorites"
+      },
+      {
+        "attribute_id": 2,
+        "attribute_name": "users"
+      }
+    ]
+  }
+]
