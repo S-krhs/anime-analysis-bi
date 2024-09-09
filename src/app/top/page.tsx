@@ -129,7 +129,7 @@ const AnimeViewerApp: React.FC = () => {
 
   const renderGraph = (dataKey: string, title: string): JSX.Element => {
     const selectedAnimeList = data.animeData.filter(anime => selectedAnimes[anime.title]);
-
+    console.log(selectedAnimeList)
     return (
       <Card className="mb-8 border-primary-200">
         <CardHeader className="border-b border-primary-100">
@@ -173,6 +173,8 @@ const AnimeViewerApp: React.FC = () => {
       </Card>
     );
   };
+
+  console.log(data)
 
   return (
     <div className="flex flex-col h-screen bg-primary-50">
