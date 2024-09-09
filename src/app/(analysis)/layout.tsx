@@ -7,7 +7,8 @@ const AnalysisLayout = async ({
   children: React.ReactNode
 }>) => {
   // todo -> supabase
-  const websiteList = await fetch('http://localhost:3000/mock/api/site-list')
+  const url = process.env.BASE_URL + '/mock/api/site-list'
+  const websiteList = await fetch(url)
     .then(res => res.json())
 
   return (
