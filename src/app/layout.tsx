@@ -17,11 +17,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="ja">
-      <Suspense>
         <body className={inter.className}>
           <div>{children}</div>
         </body>
-      </Suspense>
     </html>
   )
 }

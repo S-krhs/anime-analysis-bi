@@ -97,11 +97,9 @@ export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
   return (
     <div className="relative">
       <Sheet>
-        <div>
+        <div className="flex flex-col items-center my-2">
           <SheetTrigger>
-              <Button variant="ghost" size="icon" tabIndex={-1}>
-                <Menu />
-              </Button>
+            <Menu/>
           </SheetTrigger>
           <_MenuContentBar websiteList={websiteList} />
         </div>
