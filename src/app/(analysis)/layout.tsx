@@ -5,7 +5,7 @@ const list = [
   {
     "website_id": 1,
     "website_name": "9anime",
-    "icon_url": "http://localhost:3000/mock/img/9anime.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/9anime.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -24,7 +24,7 @@ const list = [
   {
     "website_id": 6,
     "website_name": "danime",
-    "icon_url": "http://localhost:3000/mock/img/danime.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/danime.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -39,7 +39,7 @@ const list = [
   {
     "website_id": 3,
     "website_name": "AmazonPrimeVideoJPTV",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -54,7 +54,7 @@ const list = [
   {
     "website_id": 10,
     "website_name": "dummy",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -69,7 +69,7 @@ const list = [
   {
     "website_id": 11,
     "website_name": "dummy",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -84,7 +84,7 @@ const list = [
   {
     "website_id": 12,
     "website_name": "dummy",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -99,7 +99,7 @@ const list = [
   {
     "website_id": 13,
     "website_name": "dummy",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -114,7 +114,7 @@ const list = [
   {
     "website_id": 14,
     "website_name": "dummy",
-    "icon_url": "http://localhost:3000/mock/img/amazon-tv.png",
+    "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
         "attribute_id": 1,
@@ -134,7 +134,6 @@ const AnalysisLayout = async ({
   children: React.ReactNode
 }>) => {
   // todo -> supabase
-  const url = process.env.BASE_URL + '/mock/api/site-list'
   const websiteList = list
 
   return (
