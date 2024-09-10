@@ -23,7 +23,7 @@ const list = [
   },
   {
     "website_id": 6,
-    "website_name": "danime",
+    "website_name": "dアニメストア",
     "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/danime.png",
     "attributes": [
       {
@@ -38,7 +38,7 @@ const list = [
   },
   {
     "website_id": 3,
-    "website_name": "AmazonPrimeVideoJPTV",
+    "website_name": "AmazonPrimeVideo",
     "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/amazon-tv.png",
     "attributes": [
       {
@@ -137,11 +137,7 @@ const AnalysisLayout = async ({
   const websiteList = list
 
   return (
-    <div className="flex flex-col h-screen bg-primary-50">
-      <header className="bg-white shadow-sm px-4 py-2 border-b border-primary-100 hidden lg:block">
-        <h1 className="text-2xl font-bold text-primary-700">アニメ視聴データ分析</h1>
-        {/* <p className="mt-2 text-primary-600">アニメの視聴データを分析し、トレンドを把握しましょう。</p> */}
-      </header>
+    <div className="flex flex-col h-screen">
       <div className="flex flex-1 overflow-hidden">
         <div className="lg:hidden">
           <SideMenuSp websiteList={websiteList} />

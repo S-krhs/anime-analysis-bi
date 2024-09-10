@@ -5,6 +5,7 @@ import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger　} from "@/components/ui/sheet"
 import { Menu } from 'lucide-react'
+import logoImage from '@/assets/aa-logo.png'
 
 
 type Attribute = {
@@ -26,6 +27,9 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
   return (
     <div className="px-4 py-6">
       <ul>
+        <li className="px-2 py-3">
+          <p>アニメ配信サイト</p>
+        </li>
         {websiteList && websiteList.map((website) => (
           <li className="mb-2" key={website.website_id}>
             <Button
@@ -35,7 +39,7 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
             >
               <Link
                 href={`/site/${ website.website_id }`}
-                className="flex w-full h-full p-2">
+                className="flex items-center w-full h-full p-2 px-4">
                 <img src={website.icon_url} className="mr-2 h-6 w-6 caret-transparent" alt="logo" />
                 <p className="caret-transparent">{website.website_name}</p>
               </Link>
@@ -89,6 +93,10 @@ export const SideMenuPc: React.FC<Props> = ({ websiteList }) => {
   const params = useParams()
   return (
     <div className="w-64 h-full overflow-y-auto">
+      <div className="flex flex-col items-center mt-8">
+        <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto mb-2" />
+        <h1 className="text-lg font-bold font-sans">Anime Analysis</h1>
+      </div>
       <_MenuContentFull websiteList={websiteList} pageId={Number(params.id)} />
     </div>
   )
@@ -105,7 +113,10 @@ export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
         </div>
         <SheetContent side="left" className="px-0">
           <SheetHeader>
-          <SheetTitle>メニュー</SheetTitle>
+            <SheetTitle>
+              <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto my-2" />
+              <div className="font-bold font-sans">Anime Analysis</div>
+            </SheetTitle>
             <SheetDescription>取得サイト一覧</SheetDescription>
           </SheetHeader>
           <_MenuContentFull websiteList={websiteList} />
