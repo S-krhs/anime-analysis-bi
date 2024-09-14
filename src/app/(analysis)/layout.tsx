@@ -1,5 +1,6 @@
 import "@/styles/globals.css"
 import { SideMenuPc, SideMenuSp } from '@/components/base/SideMenu'
+import { Suspense } from "react"
 
 const list = [
   {
@@ -145,7 +146,9 @@ const AnalysisLayout = async ({
         <div className="hidden lg:block">
           <SideMenuPc websiteList={websiteList} />
         </div>
-        {children}
+        <Suspense fallback={<div>Now loading...</div>}>
+          {children}
+        </Suspense>
       </div>
     </div>
   )

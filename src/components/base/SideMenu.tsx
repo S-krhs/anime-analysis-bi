@@ -28,7 +28,7 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
     <div className="px-4 py-6">
       <ul>
         <li className="px-2 py-3">
-          <p>アニメ配信サイト</p>
+          <p className="caret-transparent">アニメ配信サイト</p>
         </li>
         {websiteList && websiteList.map((website) => (
           <li className="mb-2" key={website.website_id}>
@@ -94,8 +94,8 @@ export const SideMenuPc: React.FC<Props> = ({ websiteList }) => {
   return (
     <div className="w-64 h-full overflow-y-auto">
       <div className="flex flex-col items-center mt-8">
-        <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto mb-2" />
-        <h1 className="text-lg font-bold font-sans">Anime Analysis</h1>
+        <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto mb-2 caret-transparent" />
+        <h1 className="text-lg font-bold font-sans caret-transparent">Anime Analysis</h1>
       </div>
       <_MenuContentFull websiteList={websiteList} pageId={Number(params.id)} />
     </div>
@@ -114,8 +114,8 @@ export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
         <SheetContent side="left" className="px-0">
           <SheetHeader>
             <SheetTitle>
-              <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto my-2" />
-              <div className="font-bold font-sans">Anime Analysis</div>
+              <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto my-2 caret-transparent" />
+              <div className="font-bold font-sans caret-transparent">Anime Analysis</div>
             </SheetTitle>
             <SheetDescription>取得サイト一覧</SheetDescription>
           </SheetHeader>

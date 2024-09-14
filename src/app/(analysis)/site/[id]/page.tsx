@@ -1,50 +1,24 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import LineGraph from '@/components/analysis/LineGraph'
+import { axiosClient } from '@/lib/axios'
+import { apiPathTimeData } from '@/constants/urls'
 
-const titles = [
-  "Attack on Titan", "My Hero Academia", "One Piece", "Demon Slayer", "Jujutsu Kaisen",
-  "Naruto", "Dragon Ball", "Fullmetal Alchemist", "Sword Art Online", "Tokyo Revengers",
-  "Hunter x Hunter", "Bleach", "Death Note", "Re:Zero", "Black Clover",
-  "One Punch Man", "Your Lie in April", "Haikyuu!!", "Steins;Gate", "Code Geass",
-]
-const generateRandomData = () => {
-  const data = [];
-  const startDate = new Date(2024, 3, 1); // April 1, 2024
-  const endDate = new Date(2024, 3, 15); // April 15, 2024
+const AnalysisSiteApp: React.FC = async () => {
+  const response = await axiosClient.get(apiPathTimeData)
+  console.info('Response: ', response)
 
-  for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-    const formattedDate = date.toISOString().split('T')[0]; // YYYY-MM-DD format
-
-    const dailyData = Array.from({ length: 20 }, () => ({
-      title: titles[Math.floor(Math.random() * titles.length)],
-      value: (Math.floor(Math.random() * 10000) + 1), // Random number between 1 and 10000
-    }));
-
-    data.push({ date: formattedDate, data: dailyData });
-  }
-
-  return data;
-}
-const timeSeriesData = generateRandomData()
-const titlesArray = titles.map(elem => {
-  return ({
-    title: elem
-  })
-})
-const AnalysisSiteApp: React.FC = () => {
+  const data = response.data
   return (
     <>
-      <div className="flex-1 overflow-auto p-4 lg:p-8">
+      <section className="flex-1 overflow-auto p-4 lg:p-8">
         <div className="mb-4 flex justify-between items-center">
-          
         </div>
         <LineGraph 
-            timeSeriesData={timeSeriesData}
-            titlesArray={titlesArray}
-            attribute="2"
-            attribute_name="hoge"
-            />
-      </div>
+          timeSeriesData={data.timeSeriesData}
+          titlesArray={data.titlesData}
+          attribute_name="hoge"
+          reverse={true}
+          />
+      </section>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // 環境変数のREQUIRED_BASIC_AUTHの値が'true'の場合にBASIC認証
-export function middleware(req: NextRequest) {
+export const middleware = (req: NextRequest) => {
   const requiredBasicAuth = process.env.REQUIRED_BASIC_AUTH === 'true'
   if(!requiredBasicAuth){
     return NextResponse.next()
