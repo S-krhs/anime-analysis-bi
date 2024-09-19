@@ -4,7 +4,7 @@ import { apiPathTimeData } from '@/constants/urls'
 
 const AnalysisSiteApp: React.FC = async () => {
   const response = await axiosClient.get(apiPathTimeData)
-  console.info('Response: ', response)
+  // console.info('Response: ', response)
 
   const data = response.data
   return (
