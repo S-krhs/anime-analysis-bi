@@ -60,7 +60,11 @@ const CustomTooltip = ({ active, payload, label, reverse = false }: TooltipProps
   }
   return null
 }
-const LineGraph: React.FC<Props> = ({ timeSeriesData, titlesArray, attribute_name, reverse = false }) => {
+const LineGraph: React.FC<Props> = ({
+  timeSeriesData,
+  titlesArray,
+  attribute_name,
+  reverse = false }: Props) => {
   const graphData: GraphData = timeSeriesData.map((elem) => {
     return elem.data.reduce((acc, cur) => {
       return {
