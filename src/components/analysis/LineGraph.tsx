@@ -51,9 +51,10 @@ const CustomTooltip = ({ active, payload, label, reverse = false }: TooltipProps
       <div className="bg-white p-4 rounded shadow-lg border border-primary-200">
         <p className="font-bold text-primary-600">{label}</p>
         {sortedPayload.map((entry, index) => (
-          <p key={`item-${index}`} style={{ color: entry.color }}>
-            {entry.name}: {entry.value?.toLocaleString()}
-          </p>
+          <div key={`item-${index}`} className='flex flex-row' style={{ color: entry.color }}>
+            <p className='truncate max-w-60'>{entry.name}</p>
+            <p>: {entry.value?.toLocaleString()}</p>
+          </div>
         ))}
       </div>
     )

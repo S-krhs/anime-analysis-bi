@@ -23,7 +23,7 @@ const list = [
     ]
   },
   {
-    "website_id": 6,
+    "website_id": 4,
     "website_name": "dアニメストア",
     "icon_url": "https://d1uuvxx0lewft6.cloudfront.net/img/danime.png",
     "attributes": [
