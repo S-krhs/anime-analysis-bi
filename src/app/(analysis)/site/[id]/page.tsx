@@ -3,6 +3,7 @@ import { axiosClient } from '@/lib/axios'
 import { apiTimeSeriesData, apiTableData, apiWebsiteData } from '@/constants/urls'
 import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData, GetWebsiteData, GetWebsiteDataRequest } from '@/types/api'
 import { WebsiteData } from '@/types/props'
+import TimeSeriesGraph from '@/components/graph/TimeSeriesGraph'
 
 type AnalysisSiteAppProps = {
   params: {
@@ -45,11 +46,13 @@ const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: Analy
       <section className="flex-1 overflow-y-auto overflow-x-hidden p-4 lg:p-8">
         <div className="mb-4 flex justify-between items-center">
         </div>
-        <LineGraph 
+        <TimeSeriesGraph 
           timeSeriesData={timeSeriesData}
           titlesArray={tableData}
-          attribute_name="hoge"
-          reverse={true}
+          attributeName={websiteData.attributes[0].display_name}
+          lowerValue={websiteData.attributes[0].lower_value}
+          upperValue={websiteData.attributes[0].upper_value}
+          reversed={websiteData.attributes[0].reversed ?? false}
           />
       </section>
     </>

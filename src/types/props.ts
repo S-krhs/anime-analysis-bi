@@ -1,5 +1,4 @@
-/* コンポーネントのProps型を記述
-   componentsディレクトリのPropsはcomponents内に記述 */
+/* コンポーネントのProps型を記述 */
 
 /*---------------------------------
   サーバコンポーネントのProps
@@ -32,8 +31,9 @@ export type WebsiteData = {
     display_name: string
     website_id: number
     index: number
-    upper_value: number | null
     lower_value: number | null
+    upper_value: number | null
+    reversed: boolean
   }[]
 }
 export type WebsiteDataProps = {
@@ -64,10 +64,9 @@ export type TimeSeriesGraphProps = {
   timeSeriesData: TimeSeriesDataItem[]
   titlesArray: TitlesArrayItem[]
   attributeName: string
-  startDate: string
-  endDate: string
-  upperScore: number
-  lowerScore: number
+  lowerValue: number | null
+  upperValue: number | null
+  reversed: boolean
 }
 
 // 一覧テーブル
