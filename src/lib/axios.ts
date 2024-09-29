@@ -7,8 +7,7 @@ export const axiosClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json'
   },
-  auth: process.env.REQUIRED_BASIC_AUTH ?
-  {
+  auth: process.env.REQUIRED_BASIC_AUTH ? {
     username: String(process.env.BASIC_AUTH_USER),
     password: String(process.env.BASIC_AUTH_PASSWORD)
   } : undefined,

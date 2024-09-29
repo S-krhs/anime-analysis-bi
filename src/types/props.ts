@@ -1,4 +1,11 @@
+/* コンポーネントのProps型を記述
+   componentsディレクトリのPropsはcomponents内に記述 */
 
+/*---------------------------------
+  サーバコンポーネントのProps
+ ---------------------------------*/
+
+// サイドメニュー
 export type MenuData = {
   website_id: number
   display_name: string
@@ -14,6 +21,7 @@ export type MenuDataProps = {
   menuData: MenuData
 }
 
+// ページ: (analysis)/site
 export type WebsiteData = {
   website_id: number
   display_name: string
@@ -33,24 +41,33 @@ export type WebsiteDataProps = {
 }
 
 
+/*---------------------------------
+  クライアントコンポーネントのProps
+ ---------------------------------*/
 
-export type PropsTimeSeriesDataItem = {
+/*
+  analisys関連
+——————————————————*/
+
+// 時系列データグラフ
+export type TimeSeriesDataItem = {
   date: string
   data: {
     title: string
     value: number
   }[]
 }
-export type PropsTitlesArrayItem = {
+export type TitlesArrayItem = {
   title: string
 }
-
-export type PropsTimeSeriesGraphProps = {
-  timeSeriesData: PropsTimeSeriesDataItem[]
-  titlesArray: PropsTitlesArrayItem[]
+export type TimeSeriesGraphProps = {
+  timeSeriesData: TimeSeriesDataItem[]
+  titlesArray: TitlesArrayItem[]
   attributeName: string
   startDate: string
   endDate: string
   upperScore: number
   lowerScore: number
 }
+
+// 一覧テーブル

@@ -1,7 +1,6 @@
-/**
- * interface
- * - api/data/time-series
- */
+/* supabase関数のクエリ型を記述 */
+
+// api/data/time-series
 export type SelectTimeSeriesDataRequest = {
   sdate: string | null
   edate: string | null
@@ -22,10 +21,7 @@ export type SelectTimeSeriesDataItem = {
 }
 
 
-/**
- * interface
- * - api/data/table
- */
+// api/data/table
 export type SelectTableDataRequest = {
   sdate: string | null
   edate: string | null
@@ -37,10 +33,7 @@ export type SelectTableDataItem = {
   avarage_value: number
 }
 
-/**
- * interface
- * - api/menu
- */
+// api/menu
 export type SelectWebsitesDataItem = {
   website_id: number
   display_name: string
@@ -56,13 +49,10 @@ export type SelectAttributesDataItem = {
   lower_value: number | null
 }
 
-/**
- * interface
- * - api/attribute
- */
+// api/website
 export type SelectWebsiteDataRequest = {
   website_id: number
 }
-/** SelectWebsitesDataItem -> api/menu */
-/** SelectAttributesDataItem -> api/menu */
+/* SelectWebsitesDataItem -> api/menu */
+/* SelectAttributesDataItem -> api/menu */
 

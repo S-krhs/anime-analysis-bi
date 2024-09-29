@@ -1,6 +1,6 @@
-/**
- * api/data/time-series
- */
+/* APIのI/O型を記述 */
+
+// api/data/time-series
 export type GetTimeSeriesDataRequest = {
   sdate: string | null
   edate: string | null
@@ -15,9 +15,7 @@ export type GetTimeSeriesData = {
   }[]
 }[]
 
-/**
- * api/data/table
- */
+// api/data/table
 export type GetTableDataRequest = {
   sdate: string | null
   edate: string | null
@@ -29,9 +27,7 @@ export type GetTableData = {
 }[]
 
 
-/**
- * api/menu
- */
+// api/menu
 export type GetMenuData = {
   website_id: number
   display_name: string
@@ -47,9 +43,7 @@ export type GetMenuData = {
   }[]
 }[]
 
-/**
- * api/attribute
- */
+// api/website
 export type GetWebsiteDataRequest = {
   wid: string | null
 }

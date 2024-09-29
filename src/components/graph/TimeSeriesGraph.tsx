@@ -1,0 +1,1 @@
+import { TimeSeriesGraphProps } from "@/types/props";
