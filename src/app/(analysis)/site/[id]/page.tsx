@@ -1,7 +1,7 @@
 import LineGraph from '@/components/analysis/LineGraph'
 import { axiosClient } from '@/lib/axios'
 import { apiTimeSeriesData, apiTableData } from '@/constants/urls'
-import { GetTimeSeriesDataRequest, GetTimeSeriesDataResponse } from '@/types/api'
+import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData } from '@/types/api'
 
 const AnalysisSiteApp: React.FC = async () => {
   const siteId = 1
@@ -11,12 +11,12 @@ const AnalysisSiteApp: React.FC = async () => {
     wid: String(1),
     aid: String(2),
   }
-  const timeSeriesData: GetTimeSeriesDataResponse = await axiosClient.get(
+  const timeSeriesData: GetTimeSeriesData = await axiosClient.get(
     apiTimeSeriesData,
     { params: params }
   )
 
-  const tableData = await axiosClient.get(apiTableData, {
+  const tableData: GetTableData = await axiosClient.get(apiTableData, {
     params: {
       sdate: '2024-01-01',
       edate: '2024-02-01',
