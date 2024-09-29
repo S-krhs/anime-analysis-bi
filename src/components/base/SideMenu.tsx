@@ -6,31 +6,22 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger　} from "@/components/ui/sheet"
 import { Menu } from 'lucide-react'
 import logoImage from '@/assets/aa-logo.png'
+import { MenuData, MenuDataProps } from "@/types/props"
 
 
-type Attribute = {
-  attribute_id: number
-  attribute_name: string
-}
-type WebsiteItem = {
-  website_id: number
-  website_name: string
-  icon_url: string
-  attributes: Attribute[]
-}
-type Props = {
+type MenuContentProps = {
   pageId?: number
-  websiteList: WebsiteItem[]
+  menuData: MenuData
 }
 
-const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) => {
+const _MenuContentFull: React.FC<MenuContentProps> = ({ menuData, pageId = undefined }) => {
   return (
     <div className="px-4 py-6">
       <ul>
         <li className="px-2 py-3">
           <p className="caret-transparent">アニメ配信サイト</p>
         </li>
-        {websiteList && websiteList.map((website) => (
+        {menuData && menuData.map((website) => (
           <li className="mb-2" key={website.website_id}>
             <Button
               variant="ghost"
@@ -41,7 +32,7 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
                 href={`/site/${ website.website_id }`}
                 className="flex items-center w-full h-full p-2 px-4">
                 <img src={website.icon_url} className="mr-2 h-6 w-6 caret-transparent" alt="logo" />
-                <p className="caret-transparent">{website.website_name}</p>
+                <p className="caret-transparent">{website.display_name}</p>
               </Link>
             </Button>
             {<ul className={`overflow-hidden mt-1 mb-4
@@ -53,7 +44,7 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
                     size="sm"
                     className="h-6 justify-start hover:bg-primary-100 caret-transparent mx-8"
                   >
-                    <p className="text-sm caret-transparent">{attribute.attribute_name}</p>
+                    <p className="text-sm caret-transparent">{attribute.display_name}</p>
                   </Button>
                 </li>
               ))}
@@ -64,11 +55,11 @@ const _MenuContentFull: React.FC<Props> = ({ websiteList, pageId = undefined }) 
     </div>
   )
 }
-const _MenuContentBar: React.FC<Props> = ({ websiteList }) => {
+const _MenuContentBar: React.FC<MenuContentProps> = ({ menuData }) => {
   return (
     <div className="my-2">
       <ul>
-        {websiteList.map((website) => (
+        {menuData.map((website) => (
           <li className="w-9 h-9 mb-2" key={website.website_id}>
             <Button
               variant="ghost"
@@ -89,19 +80,20 @@ const _MenuContentBar: React.FC<Props> = ({ websiteList }) => {
   )
 }
 
-export const SideMenuPc: React.FC<Props> = ({ websiteList }) => {
+export const SideMenuPC: React.FC<MenuDataProps> = ({ menuData }) => {
   const params = useParams()
+  const pageId = Number(params.id)
   return (
     <div className="w-64 h-full overflow-y-auto">
       <div className="flex flex-col items-center mt-8">
         <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto mb-2 caret-transparent" />
         <h1 className="text-lg font-bold font-sans caret-transparent">Anime Analysis</h1>
       </div>
-      <_MenuContentFull websiteList={websiteList} pageId={Number(params.id)} />
+      <_MenuContentFull menuData={menuData} pageId={pageId} />
     </div>
   )
 }
-export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
+export const SideMenuSP: React.FC<MenuDataProps> = ({ menuData }) => {
   return (
     <div className="relative">
       <Sheet>
@@ -109,7 +101,7 @@ export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
           <SheetTrigger>
             <Menu/>
           </SheetTrigger>
-          <_MenuContentBar websiteList={websiteList} />
+          <_MenuContentBar menuData={menuData} />
         </div>
         <SheetContent side="left" className="px-0">
           <SheetHeader>
@@ -119,7 +111,7 @@ export const SideMenuSp: React.FC<Props> = ({ websiteList }) => {
             </SheetTitle>
             <SheetDescription>取得サイト一覧</SheetDescription>
           </SheetHeader>
-          <_MenuContentFull websiteList={websiteList} />
+          <_MenuContentFull menuData={menuData} />
         </SheetContent>
       </Sheet>
     </div>
