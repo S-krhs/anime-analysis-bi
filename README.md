@@ -1,4 +1,4 @@
-## リンク先
+## デプロイ先
 https://anime-analysis-bi.vercel.app
 
 ## basic認証
