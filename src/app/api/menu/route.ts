@@ -3,9 +3,8 @@ import { GetMenuData } from '@/types/api'
 import { getMenuDataLogic } from './business'
 
 /**
- * GET: テーブルデータの取得
- * @params GetTableDataRequest
- * @returns GetTableData
+ * GET: メニューデータの取得
+ * @returns GetMenuData
  * 
  */
 export const GET = async (req: NextRequest) => {

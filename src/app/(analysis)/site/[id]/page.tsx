@@ -1,19 +1,35 @@
 import LineGraph from '@/components/analysis/LineGraph'
 import { axiosClient } from '@/lib/axios'
-import { apiTimeSeriesData, apiTableData } from '@/constants/urls'
-import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData } from '@/types/api'
+import { apiTimeSeriesData, apiTableData, apiWebsiteData } from '@/constants/urls'
+import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData, GetWebsiteData, GetWebsiteDataRequest } from '@/types/api'
+import { WebsiteData } from '@/types/props'
 
-const AnalysisSiteApp: React.FC = async () => {
-  const siteId = 1
-  const params: GetTimeSeriesDataRequest = {
+type AnalysisSiteAppProps = {
+  params: {
+    id: string
+  }
+}
+const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: AnalysisSiteAppProps) => {
+  const wid = params.id
+
+  const params1: GetWebsiteDataRequest = {
+    wid: String(wid)
+  }
+  const websiteData: WebsiteData = await axiosClient.get(
+    apiWebsiteData,
+    { params: params1 }
+  ) as GetWebsiteData
+
+  const aid = websiteData.attributes[0].attribute_id
+  const params2: GetTimeSeriesDataRequest = {
     sdate: '2024-01-01',
     edate: '2024-02-01',
-    wid: String(1),
-    aid: String(2),
+    wid: String(wid),
+    aid: String(aid),
   }
   const timeSeriesData: GetTimeSeriesData = await axiosClient.get(
     apiTimeSeriesData,
-    { params: params }
+    { params: params2 }
   )
 
   const tableData: GetTableData = await axiosClient.get(apiTableData, {

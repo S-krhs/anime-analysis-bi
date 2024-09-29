@@ -4,6 +4,7 @@ import { axiosClient } from "@/lib/axios"
 import { GetMenuData } from "@/types/api"
 import { MenuData } from "@/types/props"
 
+
 /**
  * @returns RSC サイドメニューバー
  */ 
@@ -14,7 +15,7 @@ const SideMenuApp : React.FC = async () => {
   const menuData: MenuData = await axiosClient.get(apiMenuData) as GetMenuData
 
   /*
-    DOMの返却
+    CCを返す
     ———————————————*/
   return (
     <>

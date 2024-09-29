@@ -46,3 +46,24 @@ export type GetMenuData = {
     lower_value: number | null
   }[]
 }[]
+
+/**
+ * api/attribute
+ */
+export type GetWebsiteDataRequest = {
+  wid: string | null
+}
+export type GetWebsiteData = {
+  website_id: number
+  display_name: string
+  index: number
+  icon_url: string
+  attributes: {
+    attribute_id: number
+    display_name: string
+    website_id: number
+    index: number
+    upper_value: number | null
+    lower_value: number | null
+  }[]
+}

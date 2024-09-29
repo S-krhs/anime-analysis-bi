@@ -1,9 +1,7 @@
 import "@/styles/globals.css"
 import { Suspense } from "react"
-import { GetMenuData } from "@/types/api"
-import { apiMenuData } from "@/constants/urls"
-import { axiosClient } from "@/lib/axios"
 import SideMenuApp from "./_common/side-menu"
+
 
 /**
  * @todo NowLoading

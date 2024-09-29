@@ -7,15 +7,32 @@ export type MenuData = {
   attributes: {
     attribute_id: number
     display_name: string
-    website_id: number
     index: number
-    upper_value: number | null
-    lower_value: number | null
   }[]
 }[]
 export type MenuDataProps = {
   menuData: MenuData
 }
+
+export type WebsiteData = {
+  website_id: number
+  display_name: string
+  index: number
+  icon_url: string
+  attributes: {
+    attribute_id: number
+    display_name: string
+    website_id: number
+    index: number
+    upper_value: number | null
+    lower_value: number | null
+  }[]
+}
+export type WebsiteDataProps = {
+  websiteData: WebsiteData
+}
+
+
 
 export type PropsTimeSeriesDataItem = {
   date: string

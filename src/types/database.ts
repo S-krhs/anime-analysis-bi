@@ -56,3 +56,13 @@ export type SelectAttributesDataItem = {
   lower_value: number | null
 }
 
+/**
+ * interface
+ * - api/attribute
+ */
+export type SelectWebsiteDataRequest = {
+  website_id: number
+}
+/** SelectWebsitesDataItem -> api/menu */
+/** SelectAttributesDataItem -> api/menu */
+
