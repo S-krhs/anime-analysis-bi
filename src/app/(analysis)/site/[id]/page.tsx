@@ -36,7 +36,7 @@ const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: Analy
     params: {
       sdate: '2024-01-01',
       edate: '2024-02-01',
-      wid: 1,
+      wid: String(wid),
     }
   })
 
