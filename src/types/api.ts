@@ -42,7 +42,7 @@ export type GetMenuData = {
     display_name: string
     website_id: number
     index: number
-    upper_value: number
-    lower_value: number
+    upper_value: number | null
+    lower_value: number | null
   }[]
 }[]
