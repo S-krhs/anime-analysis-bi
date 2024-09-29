@@ -1,3 +1,5 @@
+// 参考資料
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
