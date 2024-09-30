@@ -12,7 +12,6 @@ type AnalysisSiteAppProps = {
 }
 const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: AnalysisSiteAppProps) => {
   const wid = params.id
-
   const params1: GetWebsiteDataRequest = {
     wid: String(wid)
   }
@@ -21,7 +20,7 @@ const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: Analy
     { params: params1 }
   ) as GetWebsiteData
 
-  const aid = websiteData.attributes[0].attribute_id
+  const aid = websiteData.attributes[1].attribute_id
   const params2: GetTimeSeriesDataRequest = {
     sdate: '2024-01-01',
     edate: '2024-02-01',
@@ -49,10 +48,10 @@ const AnalysisSiteApp: React.FC<AnalysisSiteAppProps> = async ({ params }: Analy
         <TimeSeriesGraph 
           timeSeriesData={timeSeriesData}
           titlesArray={tableData}
-          attributeName={websiteData.attributes[0].display_name}
-          lowerValue={websiteData.attributes[0].lower_value}
-          upperValue={websiteData.attributes[0].upper_value}
-          reversed={websiteData.attributes[0].reversed ?? false}
+          attributeName={websiteData.attributes[1].display_name}
+          lowerValue={websiteData.attributes[1].lower_value}
+          upperValue={websiteData.attributes[1].upper_value}
+          reversed={websiteData.attributes[1].reversed ?? false}
           />
       </section>
     </>
