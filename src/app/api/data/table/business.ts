@@ -1,7 +1,7 @@
-import { GetTableData, GetTableDataRequest } from "@/types/api";
-import { SelectTableDataItem, SelectTableDataRequest } from "@/types/database";
-import { getTableData } from "./data";
-import { ERROR_MESSAGE_URL } from "@/constants/api";
+import { GetTableData, GetTableDataRequest } from "@/types/api"
+import { SelectTableDataItem, SelectTableDataRequest } from "@/types/database"
+import { getTableData } from "./data"
+import { ERROR_MESSAGE_URL } from "@/constants/api"
 
 export const getTableDataLogic = async (params: GetTableDataRequest): Promise<GetTableData> => {
   /*

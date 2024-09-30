@@ -1,7 +1,7 @@
-import { GetMenuData } from "@/types/api";
-import { SelectAttributesDataItem, SelectWebsitesDataItem } from "@/types/database";
-import { getAttributesData, getWebsitesData } from "./data";
-import { defaultWebsiteIconUrl } from "@/constants/urls";
+import { GetMenuData } from "@/types/api"
+import { SelectAttributesDataItem, SelectWebsitesDataItem } from "@/types/database"
+import { getAttributesData, getWebsitesData } from "./data"
+import { defaultWebsiteIconUrl } from "@/constants/urls"
 
 export const getMenuDataLogic = async (): Promise<GetMenuData> => {
   /*

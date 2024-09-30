@@ -1,8 +1,8 @@
-import { GetWebsiteData, GetWebsiteDataRequest } from "@/types/api";
-import { SelectAttributesDataItem, SelectWebsiteDataRequest, SelectWebsitesDataItem } from "@/types/database";
-import { getAttributesDataByWebsite, getWebsiteData } from "./data";
-import { ERROR_MESSAGE_URL } from "@/constants/api";
-import { defaultWebsiteIconUrl } from "@/constants/urls";
+import { GetWebsiteData, GetWebsiteDataRequest } from "@/types/api"
+import { SelectAttributesDataItem, SelectWebsiteDataRequest, SelectWebsitesDataItem } from "@/types/database"
+import { getAttributesDataByWebsite, getWebsiteData } from "./data"
+import { ERROR_MESSAGE_URL } from "@/constants/api"
+import { defaultWebsiteIconUrl } from "@/constants/urls"
 
 export const getWebsiteDataLogic = async (params: GetWebsiteDataRequest): Promise<GetWebsiteData> => {
   /*
