@@ -46,8 +46,8 @@ const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({
 
   const tableData: GetTableData = await axiosClient.get(apiTableData, {
     params: {
-      sdate: '2024-01-01',
-      edate: '2024-02-01',
+      sdate: searchParams['sdate'] ?? '2024-03-01',
+      edate: searchParams['edate'] ?? '2024-04-01',
       wid: String(wid),
     }
   })
