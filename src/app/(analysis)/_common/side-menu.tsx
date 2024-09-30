@@ -1,5 +1,5 @@
 import { getMenuDataLogic } from "@/app/api/menu/business"
-import { SideMenuPC, SideMenuSP } from "@/features/menu/SideMenu"
+import { SideMenuPC, SideMenuSP } from "@/features/analysis/common/SideMenu"
 import { apiMenuData } from "@/constants/urls"
 import { axiosClient } from "@/lib/axios"
 import { GetMenuData } from "@/types/api"

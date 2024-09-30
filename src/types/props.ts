@@ -1,5 +1,7 @@
 /* コンポーネントのProps型を記述 */
 
+import { TableDataItem, TimeSeriesDataItem } from "./api"
+
 /*---------------------------------
   サーバコンポーネントのProps
  ---------------------------------*/
@@ -50,23 +52,10 @@ export type WebsiteDataProps = {
 ——————————————————*/
 
 // 時系列データグラフ
-export type TimeSeriesDataItem = {
-  date: string
-  data: {
-    title: string
-    value: number
-  }[]
-}
-export type TitlesArrayItem = {
-  title: string
-}
-export type TimeSeriesGraphProps = {
+export type AnalysisWebsiteAppProps = {
+  tableData: TableDataItem[]
+  websiteData: WebsiteData
   timeSeriesData: TimeSeriesDataItem[]
-  titlesArray: TitlesArrayItem[]
-  attributeName: string
-  lowerValue: number | null
-  upperValue: number | null
-  reversed: boolean
 }
 
 // 一覧テーブル

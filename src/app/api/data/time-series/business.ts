@@ -25,20 +25,21 @@ export const getTimeSeriesDataLogic = async (params: GetTimeSeriesDataRequest): 
     データの整形
     ———————————————*/
   const timeSeriesData: GetTimeSeriesData = data.reduce((
-      acc: GetTimeSeriesData,
-      curr: SelectTimeSeriesDataItem
-    ) => {
-      const sameDateItem = acc.find(elem => elem.date === curr.date)
-      if(sameDateItem) {
-        sameDateItem.data.push({ title: curr.title, value: curr.value })
-      } else {
-        acc.push({
-          date: curr.date,
-          data: [{ title: curr.title, value: curr.value }]
-        })
-      }
-      return acc
-    }, [])
+    acc: GetTimeSeriesData,
+    curr: SelectTimeSeriesDataItem
+  ) => {
+    const sameDateItem = acc.find(elem => elem.date === curr.date)
+    if(sameDateItem) {
+      sameDateItem.data.push({ title: curr.title, value: curr.value })
+    } else {
+      acc.push({
+        date: curr.date,
+        data: [{ title: curr.title, value: curr.value }]
+      })
+    }
+    return acc
+  }, [])
+  // todo: 欠損日の補完
 
   return timeSeriesData
 }

@@ -1,11 +1,11 @@
-import { axiosClient } from '@/lib/axios'
-import { apiTimeSeriesData, apiTableData, apiWebsiteData } from '@/constants/urls'
-import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData, GetWebsiteData, GetWebsiteDataRequest } from '@/types/api'
+import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData, GetWebsiteData, GetWebsiteDataRequest, GetTableDataRequest } from '@/types/api'
 import { WebsiteData } from '@/types/props'
-import TimeSeriesGraph from '@/components/graph/TimeSeriesGraph'
 import { Suspense } from 'react'
 import { getWebsiteDataLogic } from '@/app/api/website/business'
-import DateRangePicker from '@/features/analysis/calender/DateRangePicker'
+import { getTimeSeriesDataLogic } from '@/app/api/data/time-series/business'
+import { getTableDataLogic } from '@/app/api/data/table/business'
+import DateRangePicker from '@/features/analysis/site/DateRangePicker'
+import AnalysisWebsiteApp from '@/features/analysis/site/AnalysisWebsiteApp'
 
 type AnalysisWebsitePageProps = {
   params: {
@@ -25,32 +25,14 @@ const AnalysisWebsitePage: React.FC<AnalysisWebsitePageProps> = async ({ params,
     </>
   )
 }
+
+// ContentをSuspenseのため切り出し
 const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({ params, searchParams }: AnalysisWebsitePageProps) => {
   const wid = params.id
   const params1: GetWebsiteDataRequest = {
     wid: String(wid)
   }
   const websiteData: WebsiteData = await getWebsiteDataLogic(params1) as GetWebsiteData
-
-  const aid = websiteData.attributes[0].attribute_id
-  const params2: GetTimeSeriesDataRequest = {
-    sdate: searchParams['sdate'] ?? '2024-03-01',
-    edate: searchParams['edate'] ?? '2024-04-01',
-    wid: String(wid),
-    aid: String(aid),
-  }
-  const timeSeriesData: GetTimeSeriesData = await axiosClient.get(
-    apiTimeSeriesData,
-    { params: params2 }
-  )
-
-  const tableData: GetTableData = await axiosClient.get(apiTableData, {
-    params: {
-      sdate: searchParams['sdate'] ?? '2024-03-01',
-      edate: searchParams['edate'] ?? '2024-04-01',
-      wid: String(wid),
-    }
-  })
 
   return (
     <>
@@ -61,17 +43,51 @@ const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({
         <section>
           <DateRangePicker />
         </section>
-        <section>
-          <TimeSeriesGraph 
-            timeSeriesData={timeSeriesData}
-            titlesArray={tableData}
-            attributeName={websiteData.attributes[0].display_name}
-            lowerValue={websiteData.attributes[0].lower_value}
-            upperValue={websiteData.attributes[0].upper_value}
-            reversed={websiteData.attributes[0].reversed ?? false}
-            />
-        </section>
+        <Suspense key={JSON.stringify(searchParams)} fallback={<div>Now loading...</div>}>
+          <AnalysisWebsitePageSearchResult
+            params={params}
+            searchParams={searchParams}
+            websiteData={websiteData}
+          />
+        </Suspense>
       </div>
+    </>
+  )
+}
+
+// 日付範囲の検索結果
+const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { websiteData: WebsiteData }> = async ({
+  params,
+  searchParams,
+  websiteData,
+}: AnalysisWebsitePageProps & { websiteData: WebsiteData }) => {
+
+  // 時系列データ
+  const wid = params.id
+  const aid = websiteData.attributes[0].attribute_id
+  const params2: GetTimeSeriesDataRequest = {
+    sdate: searchParams['sdate'] ?? '2024-03-01',
+    edate: searchParams['edate'] ?? '2024-04-01',
+    wid: String(wid),
+    aid: String(aid),
+  }
+  const timeSeriesData: GetTimeSeriesData = await getTimeSeriesDataLogic(params2)
+
+  // テーブルデータ
+  const params3: GetTableDataRequest = {
+    sdate: searchParams['sdate'] ?? '2024-03-01',
+    edate: searchParams['edate'] ?? '2024-04-01',
+    wid: String(wid),
+  }
+  const tableData: GetTableData = await getTableDataLogic(params3)
+
+  return (
+    <>
+      <AnalysisWebsiteApp
+        tableData={tableData}
+        websiteData={websiteData}
+        timeSeriesData={timeSeriesData}
+        />
     </>
   )
 }
