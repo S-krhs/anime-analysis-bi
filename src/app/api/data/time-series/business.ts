@@ -38,7 +38,7 @@ export const getTimeSeriesDataLogic = async (params: GetTimeSeriesDataRequest): 
       })
     }
     return acc
-  }, [])
+  }, []).sort((a, b) => a.date < b.date ? -1 : 1)
   // todo: 欠損日の補完
 
   return timeSeriesData
