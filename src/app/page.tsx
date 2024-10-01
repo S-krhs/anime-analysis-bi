@@ -11,4 +11,4 @@ const RootApp: React.FC = () => {
   )
 }
 
-export default RootApp;
+export default RootApp

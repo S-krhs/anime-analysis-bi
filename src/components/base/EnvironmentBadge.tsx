@@ -1,7 +1,7 @@
 const EnvironmentBadge: React.FC = () => {
   const environment = process.env.ENVIRONMENT_NAME
 
-  if (!environment || environment === 'LIVE') return null;
+  if (!environment || environment === 'LIVE') return null
 
   return (
     <div className="fixed bottom-4 right-4 border-4
