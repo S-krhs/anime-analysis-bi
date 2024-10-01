@@ -54,7 +54,7 @@ const AnalysisWebsiteApp: React.FC<AnalysisWebsiteAppProps> = ({
 
       {websiteData.attributes.map((elem, index) => {
         return(
-          <CardWithTitle title={websiteData.attributes[0].display_name} key={elem.attribute_id}>
+          <CardWithTitle title={elem.display_name} key={elem.attribute_id}>
             <TimeSeriesGraph
               graphData={graphDataList[index]}
               itemsArray={filteredTitles}

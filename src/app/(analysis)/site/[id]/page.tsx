@@ -63,7 +63,6 @@ const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { web
   searchParams,
   websiteData,
 }: AnalysisWebsitePageProps & { websiteData: WebsiteData }) => {
-
   const wid = params.id
 
   // 時系列データ
@@ -90,7 +89,10 @@ const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { web
     wid: String(wid),
   }
   // 最初の要素によってソート todo: 要検討 -> 不要かも？
-  const tableData: TableDataItem[] = await getTableDataLogic(getTableDataParams)
+  const primaryAtributeName = websiteData.attributes[0].display_name
+  const primaryAtributeReversed = websiteData.attributes[0].reversed
+  const tableData: TableDataItem[] = (await getTableDataLogic(getTableDataParams))
+  .sort((a, b) => (primaryAtributeReversed !== a[primaryAtributeName] > b[primaryAtributeName]) ? -1 : 1)
 
   return (
     <>
