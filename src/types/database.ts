@@ -1,13 +1,13 @@
 /* supabase関数のクエリ型を記述 */
 
 // api/data/time-series
-export type SelectTimeSeriesDataRequest = {
+export type ModelTimeSeriesDataRequest = {
   sdate: string | null
   edate: string | null
   wid: number
   aid: number
 }
-export type SelectTimeSeriesDataItem = {
+export type ModelTimeSeriesDataItem = {
   scraping_id: number
   job_id: number
   date: string
@@ -22,25 +22,25 @@ export type SelectTimeSeriesDataItem = {
 
 
 // api/data/table
-export type SelectTableDataRequest = {
+export type ModelTableDataRequest = {
   sdate: string | null
   edate: string | null
   wid: number
 }
-export type SelectTableDataItem = {
-  attribute_name: string
+export type ModelTableDataItem = {
+  display_name: string
   title: string
   avarage_value: number
 }
 
 // api/menu
-export type SelectWebsitesDataItem = {
+export type ModelWebsitesDataItem = {
   website_id: number
   display_name: string
   index: number
   icon_url: string | null
 }
-export type SelectAttributesDataItem = {
+export type ModelAttributesDataItem = {
   attribute_id: number
   display_name: string
   website_id: number
@@ -51,9 +51,9 @@ export type SelectAttributesDataItem = {
 }
 
 // api/website
-export type SelectWebsiteDataRequest = {
+export type ModelWebsiteDataRequest = {
   website_id: number
 }
-/* SelectWebsitesDataItem -> api/menu */
-/* SelectAttributesDataItem -> api/menu */
+/* ModelWebsitesDataItem -> api/menu */
+/* ModelAttributesDataItem -> api/menu */
 

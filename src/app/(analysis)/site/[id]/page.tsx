@@ -1,5 +1,5 @@
 import { GetTimeSeriesDataRequest, GetTimeSeriesData, GetTableData, GetWebsiteData, GetWebsiteDataRequest, GetTableDataRequest } from '@/types/api'
-import { WebsiteData } from '@/types/props'
+import { TableDataItem, TimeSeriesDataItem, WebsiteData } from '@/types/props'
 import { Suspense } from 'react'
 import { getWebsiteDataLogic } from '@/app/api/website/business'
 import { getTimeSeriesDataLogic } from '@/app/api/data/time-series/business'
@@ -43,13 +43,15 @@ const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({
         <section>
           <DateRangePicker />
         </section>
-        <Suspense key={JSON.stringify(searchParams)} fallback={<div>Now loading...</div>}>
-          <AnalysisWebsitePageSearchResult
-            params={params}
-            searchParams={searchParams}
-            websiteData={websiteData}
-          />
-        </Suspense>
+        <section>
+          <Suspense key={JSON.stringify(searchParams)} fallback={<div>Now loading...</div>}>
+            <AnalysisWebsitePageSearchResult
+              params={params}
+              searchParams={searchParams}
+              websiteData={websiteData}
+            />
+          </Suspense>
+        </section>
       </div>
     </>
   )
@@ -62,34 +64,43 @@ const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { web
   websiteData,
 }: AnalysisWebsitePageProps & { websiteData: WebsiteData }) => {
 
-  // 時系列データ
   const wid = params.id
-  const aid = websiteData.attributes[0].attribute_id
-  const params2: GetTimeSeriesDataRequest = {
-    sdate: searchParams['sdate'] ?? '2024-03-01',
-    edate: searchParams['edate'] ?? '2024-04-01',
-    wid: String(wid),
-    aid: String(aid),
-  }
-  const timeSeriesData: GetTimeSeriesData = await getTimeSeriesDataLogic(params2)
+
+  // 時系列データ
+  const timeSeriesParamsArray
+  : GetTimeSeriesDataRequest[] = websiteData.attributes.map((elem) => {
+    return({
+      sdate: searchParams['sdate'] ?? '2024-03-01',
+      edate: searchParams['edate'] ?? '2024-04-01',
+      wid: String(wid),
+      aid: String(elem.attribute_id),
+    })
+  })
+  const timeSeriesDataList: TimeSeriesDataItem[][] = await Promise.all(
+    timeSeriesParamsArray.map(async (elem: GetTimeSeriesDataRequest) => {
+      return await getTimeSeriesDataLogic(elem)
+    })
+  )
+  
 
   // テーブルデータ
-  const params3: GetTableDataRequest = {
+  const getTableDataParams: GetTableDataRequest = {
     sdate: searchParams['sdate'] ?? '2024-03-01',
     edate: searchParams['edate'] ?? '2024-04-01',
     wid: String(wid),
   }
-  const tableData: GetTableData = await getTableDataLogic(params3)
+  // 最初の要素によってソート todo: 要検討 -> 不要かも？
+  const tableData: TableDataItem[] = await getTableDataLogic(getTableDataParams)
 
   return (
     <>
       <AnalysisWebsiteApp
         tableData={tableData}
         websiteData={websiteData}
-        timeSeriesData={timeSeriesData}
+        timeSeriesDataList={timeSeriesDataList}
         />
     </>
   )
-}
+} 
 
 export default AnalysisWebsitePage

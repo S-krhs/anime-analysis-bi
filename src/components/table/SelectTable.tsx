@@ -1,157 +1,108 @@
 "use client"
 
 import { CaretSortIcon } from "@radix-ui/react-icons"
-import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel,
+import { Column, ColumnDef, ColumnFiltersState, Row, SortingState, VisibilityState, flexRender, getCoreRowModel,
   getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-
-const data: TableDataItem[] = [
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
-  },
-]
 
 // 型定義
-export type TableDataItem = {
+export type SelectTableDataItem = {
   [key: string]: number | string
 }
-export type DataTableProps = {
-  tableData: TableDataItem[]
-  setFilteredData: (data: TableDataItem[]) => void
+export type ColumnName = {
+  key: string
+  name: string
+}
+export type SelectTableProps = {
+  tableData: SelectTableDataItem[]
+  columnNames: ColumnName[]
+  initialCheckNumber?: number
+  setFilteredData: (data: SelectTableDataItem[]) => void
 }
 
-export const columns: ColumnDef<TableDataItem>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  }
-]
+// チェックボックス列
+const selectColumn: ColumnDef<SelectTableDataItem> = {
+  id: "select",
+  header: ({ table }) => (
+    <Checkbox
+      checked={
+        table.getIsAllPageRowsSelected() ||
+        (table.getIsSomePageRowsSelected() && "indeterminate")
+      }
+      onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+      aria-label="Select all"
+    />
+  ),
+  cell: ({ row }) => (
+    <Checkbox
+      checked={row.getIsSelected()}
+      onCheckedChange={(value) => row.toggleSelected(!!value)}
+      aria-label="Select row"
+    />
+  ),
+  enableSorting: false,
+  enableHiding: false,
+}
 
-const DataTable: React.FC<DataTableProps> = ({
+// セレクトテーブル
+const SelectTable: React.FC<SelectTableProps> = ({
   tableData,
+  columnNames,
+  initialCheckNumber,
   setFilteredData,
-}: DataTableProps) => {
+}: SelectTableProps) => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [rowSelection, setRowSelection] = useState({})
+  const [rowSelection, setRowSelection] = useState<{[key in number]: boolean}>({})
 
+  useEffect(() => {
+    if(initialCheckNumber && initialCheckNumber > 0){
+      const initialRowSelection: {[key in number]: boolean} = [
+        ...Array(initialCheckNumber).keys()
+        ].reduce((acc, curr) => {
+          return {
+            ...acc,
+            [curr]: true
+          }
+        }, {})
+      setRowSelection(initialRowSelection)
+    }
+  },[])
+  useEffect(() => {
+    const filteredItems = tableData.filter((_elem, index) => {
+      return rowSelection[index]
+    })
+    setFilteredData(filteredItems)
+  },[rowSelection])
 
-  const table = useReactTable<TableDataItem>({
-    data: data,
+  const columns: ColumnDef<SelectTableDataItem>[] = [
+    selectColumn,
+    ...columnNames.map((elem) => {
+      return ({
+          accessorKey: elem.key,
+          header: ({ column }: { column: Column<SelectTableDataItem, unknown>}) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                {elem.name}
+                <CaretSortIcon className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+          cell: ({ row }: { row: Row<SelectTableDataItem>}) => <div className="lowercase">{row.getValue(elem.key)}</div>,
+        })
+    })
+  ]
+
+  const table = useReactTable<SelectTableDataItem>({
+    data: tableData,
     columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -172,10 +123,10 @@ const DataTable: React.FC<DataTableProps> = ({
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder={`${columnNames[0].name} を 検索...`}
+          value={(table.getColumn(columnNames[0].key)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn(columnNames[0].key)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -259,4 +210,4 @@ const DataTable: React.FC<DataTableProps> = ({
     </>
   )
 }
-export default DataTable
+export default SelectTable

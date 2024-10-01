@@ -7,14 +7,14 @@ export type GetTimeSeriesDataRequest = {
   wid: string | null
   aid: string | null
 }
-export type TimeSeriesDataItem = {
+export type GetTimeSeriesDataItem = {
   date: string
   data: {
     title: string
     value: number
   }[]
 }
-export type GetTimeSeriesData = TimeSeriesDataItem[]
+export type GetTimeSeriesData = GetTimeSeriesDataItem[]
 
 // api/data/table
 export type GetTableDataRequest = {
@@ -22,11 +22,10 @@ export type GetTableDataRequest = {
   edate: string | null
   wid: string | null
 }
-export type TableDataItem = {
+export type GetTableData = {
   title: string
   [key: string]: number | string
-}
-export type GetTableData = TableDataItem[]
+}[]
 
 
 // api/menu

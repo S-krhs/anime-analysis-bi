@@ -1,5 +1,5 @@
 import { GetWebsiteData, GetWebsiteDataRequest } from "@/types/api"
-import { SelectAttributesDataItem, SelectWebsiteDataRequest, SelectWebsitesDataItem } from "@/types/database"
+import { ModelAttributesDataItem, ModelWebsiteDataRequest, ModelWebsitesDataItem } from "@/types/database"
 import { getAttributesDataByWebsite, getWebsiteData } from "./data"
 import { ERROR_MESSAGE_URL } from "@/constants/api"
 import { defaultWebsiteIconUrl } from "@/constants/urls"
@@ -13,11 +13,11 @@ export const getWebsiteDataLogic = async (params: GetWebsiteDataRequest): Promis
   /*
     DBからデータの取得
     ———————————————*/
-  const query: SelectWebsiteDataRequest = {
+  const query: ModelWebsiteDataRequest = {
     website_id: Number(params.wid),
   }
-  const data1: SelectWebsitesDataItem[] = await getWebsiteData(query)
-  const data2: SelectAttributesDataItem[] = await getAttributesDataByWebsite(query)
+  const data1: ModelWebsitesDataItem[] = await getWebsiteData(query)
+  const data2: ModelAttributesDataItem[] = await getAttributesDataByWebsite(query)
 
   /*
     データの整形
