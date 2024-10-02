@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 const DateRangePicker: React.FC = () => {
-  const [date1, setDate1] = useState<string>('')
-  const [date2, setDate2] = useState<string>('')
+  const [date1, setDate1] = useState<string | null>('2024-04-01')
+  const [date2, setDate2] = useState<string | null>('2024-06-30')
 
   const router = useRouter()
   const currentPath = usePathname()
@@ -14,14 +14,14 @@ const DateRangePicker: React.FC = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams)
-    setDate1(params.get('sdate') ?? '2024-04-01')
-    setDate2(params.get('edate') ?? '2024-06-30')
+    setDate1(params.get('sdate'))
+    setDate2(params.get('edate'))
   }, [])
 
   const onSearch = () => {
     const params = new URLSearchParams(searchParams)
-    params.set('sdate', date1)
-    params.set('edate', date2)
+    if(date1) params.set('sdate', date1)
+    if(date2) params.set('edate', date2)
     router.replace(`${currentPath}?${params.toString()}`)
   }
 
@@ -29,13 +29,13 @@ const DateRangePicker: React.FC = () => {
     <>
       <input
         type="text"
-        value={date1}
+        value={date1 ?? undefined}
         onChange={(e) => setDate1(e.target.value)}
         className="border"
         />
       <input
         type="text"
-        value={date2}
+        value={date2 ?? undefined}
         onChange={(e) => setDate2(e.target.value)}
         className="border"
         />

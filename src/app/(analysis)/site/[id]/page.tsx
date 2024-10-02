@@ -69,8 +69,8 @@ const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { web
   const timeSeriesParamsArray
   : GetTimeSeriesDataRequest[] = websiteData.attributes.map((elem) => {
     return({
-      sdate: searchParams['sdate'] ?? '2024-03-01',
-      edate: searchParams['edate'] ?? '2024-04-01',
+      sdate: searchParams['sdate'] ?? '2024-04-01',
+      edate: searchParams['edate'] ?? '2024-06-30',
       wid: String(wid),
       aid: String(elem.attribute_id),
     })
