@@ -2,7 +2,7 @@
 
 import TimeSeriesGraph, { GraphDataItem } from "@/components/graph/TimeSeriesGraph"
 import CardWithTitle from "@/components/layout/CardWithTitle"
-import SelectTable, { SelectTableDataItem } from "@/components/table/SelectTable"
+import SelectTable, { ColumnName, SelectTableDataItem } from "@/components/table/SelectTable"
 import { AnalysisWebsiteAppProps, TimeSeriesDataItem } from "@/types/props"
 import { useState } from "react"
 
@@ -31,11 +31,16 @@ const AnalysisWebsiteApp: React.FC<AnalysisWebsiteAppProps> = ({
   })
 
   // テーブルのカラムの整形
-  const attributeNames = [
-    { key: 'title', name: 'タイトル'},
+  const attributeNames: ColumnName[] = [
+    {
+      key: 'title',
+      type: 'string' as 'string',
+      name: 'タイトル',
+    },
     ...websiteData.attributes.map(elem => {
       return({
         key: elem.display_name,
+        type: 'number' as 'number',
         name: elem.display_name,
       })
     })

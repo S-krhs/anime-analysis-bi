@@ -1,16 +1,22 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 const DateRangePicker: React.FC = () => {
-  const [date1, setDate1] = useState<string>('2023-10-01')
-  const [date2, setDate2] = useState<string>('2024-03-31')
+  const [date1, setDate1] = useState<string>('')
+  const [date2, setDate2] = useState<string>('')
 
   const router = useRouter()
   const currentPath = usePathname()
   const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams)
+    setDate1(params.get('sdate') ?? '2024-04-01')
+    setDate2(params.get('edate') ?? '2024-06-30')
+  }, [])
 
   const onSearch = () => {
     const params = new URLSearchParams(searchParams)

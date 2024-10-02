@@ -16,6 +16,7 @@ export type SelectTableDataItem = {
 }
 export type ColumnName = {
   key: string
+  type: 'string' | 'number'
   name: string
 }
 export type SelectTableProps = {
@@ -89,6 +90,7 @@ const SelectTable: React.FC<SelectTableProps> = ({
             return (
               <Button
                 variant="ghost"
+                className={`${elem.type === 'number' ?? 'hidden lg:flex'}`}
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
               >
                 {elem.name}
@@ -96,7 +98,9 @@ const SelectTable: React.FC<SelectTableProps> = ({
               </Button>
             )
           },
-          cell: ({ row }: { row: Row<SelectTableDataItem>}) => <div className="lowercase">{row.getValue(elem.key)}</div>,
+          cell: ({ row }: { row: Row<SelectTableDataItem>}) => <div className={
+            `lowercase ${elem.type === 'number' ? 'text-right hidden lg:block' : 'text-left'}`
+          }>{row.getValue(elem.key)}</div>,
         })
     })
   ]

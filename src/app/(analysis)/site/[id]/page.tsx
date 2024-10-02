@@ -83,16 +83,16 @@ const AnalysisWebsitePageSearchResult: React.FC<AnalysisWebsitePageProps & { web
   
 
   // テーブルデータ
-  const getTableDataParams: GetTableDataRequest = {
-    sdate: searchParams['sdate'] ?? '2024-03-01',
-    edate: searchParams['edate'] ?? '2024-04-01',
-    wid: String(wid),
-  }
-  // 最初の要素によってソート todo: 要検討 -> 不要かも？
   const primaryAtributeName = websiteData.attributes[0].display_name
   const primaryAtributeReversed = websiteData.attributes[0].reversed
+  const getTableDataParams: GetTableDataRequest = {
+    sdate: searchParams['sdate'] ?? '2024-04-01',
+    edate: searchParams['edate'] ?? '2024-06-30',
+    wid: String(wid),
+    attr: primaryAtributeName,
+    asc: primaryAtributeReversed,
+  }
   const tableData: TableDataItem[] = (await getTableDataLogic(getTableDataParams))
-  .sort((a, b) => (primaryAtributeReversed !== a[primaryAtributeName] > b[primaryAtributeName]) ? -1 : 1)
 
   return (
     <>

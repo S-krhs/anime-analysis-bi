@@ -21,6 +21,9 @@ export type GetTableDataRequest = {
   sdate: string | null
   edate: string | null
   wid: string | null
+  attr?: string
+  asc?: boolean
+  limit?: number
 }
 export type GetTableData = {
   title: string

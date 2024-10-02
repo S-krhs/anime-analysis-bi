@@ -71,7 +71,7 @@ const TimeSeriesGraph: React.FC<TimeSeriesGraphProps> = ({
           <LineChart data={graphData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E0E7FF" />
             <XAxis dataKey="date" stroke="#000000" />
-            {isPC ? <YAxis domain={domain} reversed={reversed} stroke="#000000" /> : <></>}
+            <YAxis domain={domain} reversed={reversed} stroke="#000000" width={isPC ? 10 : 4} />
             <Tooltip wrapperStyle={{zIndex: 1}} content={<CustomTooltip reversed={reversed}/>} />
             {itemsArray.map((elem, index) => (
               <Line

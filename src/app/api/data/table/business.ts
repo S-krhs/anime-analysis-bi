@@ -25,15 +25,21 @@ export const getTableDataLogic = async (params: GetTableDataRequest): Promise<Ge
   const tableData: GetTableData = data.reduce((acc: GetTableData, curr: ModelTableDataItem) => {
     const sameTitleItem = acc.find(elem => elem.title === curr.title)
     if(sameTitleItem){
-      sameTitleItem[curr.display_name] = curr.avarage_value
+      sameTitleItem[curr.display_name] = Number(curr.avarage_value.toFixed(1))
     }else{
       acc.push({
         title: curr.title,
-        [curr.display_name]: curr.avarage_value
+        [curr.display_name]: Number(curr.avarage_value.toFixed(1))
       })
     }
     return acc
   }, [])
 
-  return tableData
+  const sortedTableData: GetTableData = (params.asc && params.attr)
+    ? tableData
+        .sort((a, b) => (params.asc !== (a[params.attr!] > b[params.attr!]) ? -1 : 1))
+        .slice(0, params.limit)
+    : tableData
+
+  return sortedTableData
 }
