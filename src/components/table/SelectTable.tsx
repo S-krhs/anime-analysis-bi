@@ -90,7 +90,7 @@ const SelectTable: React.FC<SelectTableProps> = ({
             return (
               <Button
                 variant="ghost"
-                className={`${elem.type === 'number' ?? 'hidden lg:flex'}`}
+                className={`${elem.type === 'number' ? 'hidden lg:flex' : ''}`}
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
               >
                 {elem.name}
