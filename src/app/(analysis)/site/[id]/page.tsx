@@ -36,9 +36,23 @@ const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({
 
   return (
     <>
-      <div className='flex flex-col gap-4 px-4 lg:px-12 py-8'>
-        <section>
-          <h1 className='text-3xl'>{websiteData.display_name}</h1>
+      <div className='flex flex-col gap-4'>
+        <section className='flex flex-col gap-4'>
+          <div className='w-full h-36 flex items-end bg-slate-600'>
+            <h1 className='text-3xl font-bold text-white mx-2'>{websiteData.display_name}</h1>
+          </div>
+          <div className='flex gap-20 h-24'>
+            <div className='w-1/6'>
+              <ul>
+                <li>国内会員数: </li>
+                <li>メイン層: </li>
+              </ul>
+            </div>
+            <div>
+              <p>ああああああああああああああああああああああああああああああああああああああ</p>
+            </div>
+          </div>
+
         </section>
         <section>
           <DateRangePicker />

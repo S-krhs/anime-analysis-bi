@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "@/styles/globals.css"
 import { Suspense } from "react"
+import EnvironmentBadge from "@/components/base/EnvironmentBadge"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,9 +19,12 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode
 }>) => {
+  const environment = String(process.env.ENVIRONMENT_NAME)
+
   return (
     <html lang="ja">
       <body className={inter.className}>
+        {environment !== 'LIVE' ? <EnvironmentBadge environment={environment} /> : <></>}
         <Suspense fallback={<div>Now loading...</div>}>
           {children}
         </Suspense>
