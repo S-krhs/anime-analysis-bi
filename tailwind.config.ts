@@ -61,21 +61,21 @@ const config: Config = {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
-		zIndex: {
-			popover: '10',
-			sideDrawer: '20',
-			globalMenu: '100',
-			modal: '50',
-		},
-		height: {
-			screen: '100dvh'
-		},
-		minHeight: {
-			screen: '100dvh'
-		},
-		maxHeight: {
-			screen: '100dvh'
-		}
+			zIndex: {
+				popover: '10',
+				sideDrawer: '20',
+				globalMenu: '100',
+				modal: '50',
+			},
+			height: {
+				screen: '100dvh'
+			},
+			minHeight: {
+				screen: '100dvh'
+			},
+			maxHeight: {
+				screen: '100dvh'
+			},
   	}
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,7 +1,6 @@
 import "@/styles/globals.css"
 import SideMenuApp from "./_common/side-menu"
 
-
 /**
  * @todo NowLoading
  */ 

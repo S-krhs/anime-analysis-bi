@@ -4,9 +4,13 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
+
+// 今期/前期/今年～2022年四半期ごと
+
+
 const DateRangePicker: React.FC = () => {
-  const [sdate, setSDate] = useState<string | null>('2024-04-01')
-  const [edate, setEDate] = useState<string | null>('2024-06-30')
+  const [sdate, setSDate] = useState<string>('')
+  const [edate, setEDate] = useState<string>('')
 
   const router = useRouter()
   const currentPath = usePathname()
@@ -14,8 +18,8 @@ const DateRangePicker: React.FC = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams)
-    setSDate(params.get('sdate'))
-    setEDate(params.get('edate'))
+    setSDate(params.get('sdate') ?? '')
+    setEDate(params.get('edate') ?? '')
   }, [])
 
   const onSearch = () => {
