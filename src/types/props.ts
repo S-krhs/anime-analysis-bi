@@ -26,6 +26,10 @@ export type WebsiteData = {
   display_name: string
   index: number
   icon_url: string
+  header_image_url: string | null
+  description: string | null
+  data_label: string | null
+  data_value: string | null
   attributes: {
     attribute_id: number
     display_name: string

@@ -84,7 +84,7 @@ export const SideMenuPC: React.FC<MenuDataProps> = ({ menuData }) => {
   const params = useParams()
   const pageId = Number(params.id)
   return (
-    <div className="w-64 h-full overflow-y-auto">
+    <div className="w-72 h-full overflow-y-auto">
       <div className="flex flex-col items-center mt-8">
         <img src={logoImage.src} alt="aa-logo" className="h-12 mx-auto mb-2 caret-transparent" />
         <h1 className="text-lg font-bold font-sans caret-transparent">Anime Analysis</h1>

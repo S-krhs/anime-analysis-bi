@@ -39,6 +39,10 @@ export type ModelWebsitesDataItem = {
   display_name: string
   index: number
   icon_url: string | null
+  header_image_url: string | null
+  description: string | null
+  data_label: string | null
+  data_value: string | null
 }
 export type ModelAttributesDataItem = {
   attribute_id: number

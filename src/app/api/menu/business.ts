@@ -21,7 +21,7 @@ export const getMenuDataLogic = async (): Promise<GetMenuData> => {
       icon_url: website.icon_url ?? defaultWebsiteIconUrl,
       attributes: attributes
     }
-  })
+  }).filter(elem => elem.attributes.length)
 
   return menuData
 }

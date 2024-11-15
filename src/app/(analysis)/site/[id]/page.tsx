@@ -45,64 +45,18 @@ const AnalysisWebsitePageContents: React.FC<AnalysisWebsitePageProps> = async ({
       <div className='flex flex-col gap-4 lg:gap-8'>
         <section className='flex flex-col gap-4'>
           <div className='w-full h-24 lg:h-60 flex items-end relative'>
-            <video className='absolute inset-0 w-full h-full object-cover object-center'
-              src='https://www.sakugabooru.com/data/d1b9e6322e1d4ba11f9a1e4a2845b843.mp4' autoPlay loop muted playsInline />
-            <div className='absolute inset-0 w-full h-full z-10 bg-black bg-opacity-40 '></div>
+            {websiteData.header_image_url ? <video className='absolute inset-0 w-full h-full object-cover object-center'
+              src={websiteData.header_image_url} autoPlay loop muted playsInline /> : <></>}
+            <div className='absolute inset-0 w-full h-full z-10 bg-black bg-opacity-60 '></div>
             <h1 className={`${rampartOne.className} text-4xl lg:text-8xl lg:font-bold text-white mx-2 -mb-1 z-10`}>{websiteData.display_name}</h1>
           </div>
-          <div className='hidden lg:flex gap-20'>
-            <div className='w-1/6'>
-              <ul>
-                <li>データ①: xxx人</li>
-                <li>データ②: xxx層</li>
-              </ul>
-            </div>
-            <div>
-              <p>ここにサイトの説明</p>
-            </div>
+          <div className='hidden lg:block'>
+            <h3 className='text-lg font-bold mb-2'>★{websiteData.data_label}：{websiteData.data_value}</h3>
+            <p className='ml-4'>{websiteData.description}</p>
           </div>
         </section>
         <section>
           <DateRangePicker />
-        </section>
-        <section className='hidden lg:block'>
-          <ul className='flex h-24 justify-around'>
-            <li className='w-1/6 h-full'>
-              <a className='relative w-full h-full block'
-                href='https://video.twimg.com/ext_tw_video/1760172761300008960/pu/vid/avc1/640x360/oiE2GLnJmoD92HK0.mp4' target='_blank'>
-                <img className='absolute inset-0 max-w-full max-h-full'
-                  src='https://vtg5u9fph9z65gds.public.blob.vercel-storage.com/other/anime/capture/btr-0FM4hZEP2OR0ZcOdatng9KAK1tNmRO.png'/>
-              </a>
-            </li>
-            <li className='w-1/6 h-full'>
-              <a className='relative w-full h-full block'
-                href='https://www.sakugabooru.com/data/5e2385acbf932f88bb458e7cc22ea113.mp4' target='_blank'>
-                <img className='absolute inset-0 max-w-full max-h-full'
-                  src='https://vtg5u9fph9z65gds.public.blob.vercel-storage.com/other/anime/capture/geass-SiWhCwCL9qoMaf6ziR1AYJaF8CzUIO.png'/>
-              </a>
-            </li>
-            <li className='w-1/6 h-full'>
-              <a className='relative w-full h-full block'
-                href='https://www.sakugabooru.com/data/5f8d73e90c846679ece6fe867cccbe49.mp4' target='_blank'>
-                <img className='absolute inset-0 max-w-full max-h-full'
-                  src='https://vtg5u9fph9z65gds.public.blob.vercel-storage.com/other/anime/capture/liz-5rTm425vDoIcrQMF1xUa3SBSlUqFX3.png'/>
-              </a>
-            </li>
-            <li className='w-1/6 h-full'>
-              <a className='relative w-full h-full block'
-                href='https://video.twimg.com/ext_tw_video/1760172761300008960/pu/vid/avc1/640x360/oiE2GLnJmoD92HK0.mp4' target='_blank'>
-                <img className='absolute inset-0 max-w-full max-h-full'
-                  src='https://vtg5u9fph9z65gds.public.blob.vercel-storage.com/other/anime/capture/btr-0FM4hZEP2OR0ZcOdatng9KAK1tNmRO.png'/>
-              </a>
-            </li>
-            <li className='w-1/6 h-full'>
-              <a className='relative w-full h-full block'
-                href='https://www.sakugabooru.com/data/5e2385acbf932f88bb458e7cc22ea113.mp4' target='_blank'>
-                <img className='absolute inset-0 max-w-full max-h-full'
-                  src='https://vtg5u9fph9z65gds.public.blob.vercel-storage.com/other/anime/capture/geass-SiWhCwCL9qoMaf6ziR1AYJaF8CzUIO.png'/>
-              </a>
-            </li>
-          </ul>
         </section>
         <section>
           <Suspense key={JSON.stringify(searchParams)} fallback={<div>Now loading...</div>}>
